@@ -2,7 +2,7 @@ const data = {
   "payment-consents": [
     {
       "consentId": "pdc-001",
-      "status": "AwaitingAuthorisation",
+      "status": "AwaitingAuthorisation", 
       "creationDateTime": "2025-01-17T10:00:00Z",
       "amount": "2000.000",
       "currency": "AED",
@@ -14,7 +14,7 @@ const data = {
     {
       "paymentId": "pmt-001",
       "status": "AcceptedSettlementInProcess",
-      "creationDateTime": "2025-01-17T10:05:00Z",
+      "creationDateTime": "2025-01-17T10:05:00Z", 
       "amount": "2000.000",
       "currency": "AED"
     }
@@ -30,6 +30,11 @@ const data = {
 }
 
 export default function handler(req, res) {
+  // Add UAE Open Banking compliant response headers
+  res.setHeader('x-fapi-interaction-id', req.headers['x-fapi-interaction-id'] || 'default-interaction-id');
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'no-store');
+  
   const { method, query } = req
   const { path } = query
   
